@@ -1,0 +1,28 @@
+{
+  "tests": [
+    {
+      "title": "Hello Servlet MVC",
+      "content": "@WebServlet(\"/hello\")\npublic class HelloServlet extends HttpServlet {\n\n    @Override\n    protected void doGet(\n            HttpServletRequest request,\n            HttpServletResponse response)\n            throws ServletException, IOException {\n\n        request.setAttribute(\"message\", \"Hello Servlet MVC\");\n\n        request.getRequestDispatcher(\"/hello.jsp\")\n                .forward(request, response);\n    }\n}"
+    },
+    {
+      "title": "Hello JSP View",
+      "content": "<html>\n<body>\n\n<h1>${message}</h1>\n\n</body>\n</html>"
+    },
+    {
+      "title": "Login Form JSP",
+      "content": "<html>\n<body>\n\n<form action=\"login\" method=\"post\">\n\n    Username:\n    <input type=\"text\" name=\"username\">\n\n    <br>\n\n    Password:\n    <input type=\"password\" name=\"password\">\n\n    <br>\n\n    <button type=\"submit\">\n        Login\n    </button>\n\n</form>\n\n</body>\n</html>"
+    },
+    {
+      "title": "Login Servlet",
+      "content": "@WebServlet(\"/login\")\npublic class LoginServlet extends HttpServlet {\n\n    @Override\n    protected void doPost(\n            HttpServletRequest request,\n            HttpServletResponse response)\n            throws ServletException, IOException {\n\n        String username =\n                request.getParameter(\"username\");\n\n        String password =\n                request.getParameter(\"password\");\n\n        if (\"admin\".equals(username)\n                && \"123\".equals(password)) {\n\n            request.setAttribute(\n                    \"message\",\n                    \"Login success\");\n\n        } else {\n\n            request.setAttribute(\n                    \"message\",\n                    \"Login failed\");\n        }\n\n        request.getRequestDispatcher(\"/result.jsp\")\n                .forward(request, response);\n    }\n}"
+    },
+    {
+      "title": "Ctrl + C (Copy Logic)",
+      "content": "document.addEventListener('copy', (event) => {\n    const selection = document.getSelection();\n    event.clipboardData.setData('text/plain', selection.toString());\n    event.preventDefault();\n    console.log('Đã sao chép!');\n});"
+    },
+    {
+      "title": "Ctrl + V (Paste Logic)",
+      "content": "document.addEventListener('paste', (event) => {\n    const pasteData = (event.clipboardData || window.clipboardData).getData('text');\n    console.log('Nội dung vừa dán:', pasteData);\n});"
+    }
+  ]
+}
